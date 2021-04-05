@@ -1,4 +1,4 @@
-export const artists = [{
+const artists = [{
     "id": 0,
     "name": "Amedeo Modigliani",
     "years": "1884 - 1920",
@@ -248,9 +248,12 @@ function get20s(arr) {
   /*Your Code Here*/
   let results = [];
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i].years)
+    if (arr[i].years >= "1900- 2000") {
+      results.push(arr[i].name);
+    }
+    return results;
   }
-}
+};
 
 
 
@@ -263,30 +266,45 @@ Use removeArtist to do the following:
 
 For example, if removeArtist is invoked with the artists array and the number 0, it will remove Amedeo Modigliani from our dataset and return the number 19. */
 
-function removeArtist( /*Your Code Here*/ ) {
+function removeArtist(arr) {
   /*Your Code Here*/
+  arr.splice(0, 1);
+  console.log(arr.length);
 }
+removeArtist(artists);
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use addArtist to do the following: 
 1. Receive an array
 2. Add this object of information to the end of the array
-  { 
-    id: 20,
-    name: Your Name Here, 
-    years: Your Birth Year - current day,
-    genre: Web Design, 
-    nationality: Your Nationality Here
-    bio: Add 1-2 sentences (or use lorem ipsum)
-  }  
+{ 
+  id: 20,
+  name: Your Name Here, 
+  years: Your Birth Year - current day,
+  genre: Web Design, 
+  nationality: Your Nationality Here
+  bio: Add 1-2 sentences (or use lorem ipsum)
+}  
+
 3. Return the resulting array
 
 Example: addArtist(artists) should return the artists array with the above object added to the end of the array. */
-
-function addArtist( /*Your Code Here*/ ) {
-  /*Your Code Here*/
+const artist = {
+  "id": 20,
+  "name": "Your Name Here",
+  "years": "Your Birth Year - current day",
+  "genre": "Web Design",
+  "nationality": "Nationality",
+  "bio": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla sint veniam corrupti excepturi illum doloribus natus nisi animi magni asperiores."
 }
+
+function addArtist(arr, artist) {
+  /*Your Code Here*/
+  arr.unshift(artist);
+  console.log(arr);
+}
+addArtist(artists, artist);
 
 
 
@@ -297,10 +315,18 @@ Use lotsOfArt to do the following:
 
 For example lotsOfArt(artists); will return ["Amedeo Modigliani", "Rene Magritte", ... "Albrecht Dürer"]*/
 
-function lotsOfArt( /*Your Code Here*/ ) {
+function lotsOfArt(arr) {
   /*Your Code Here*/
+  let newArray = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].paintings > 100) {
+      newArray.push(arr[i].name);
+    }
+  }
+  return newArray;
 }
 
+console.log(lotsOfArt(artists));
 
 
 
@@ -312,10 +338,10 @@ In HTML, every artist and associated content uses the following structure:
 
 <div id="artist">
 <div class="image">
-  <img src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/starry-night-by-vincent-van-gogh-vincent-van-gogh.jpg"/>
+<img src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/starry-night-by-vincent-van-gogh-vincent-van-gogh.jpg"/>
 </div>
 <div class = "name">
- <a href="https://en.wikipedia.org/wiki/Vincent_van_Gogh"> Vincent Van Gogh</a>
+<a href="https://en.wikipedia.org/wiki/Vincent_van_Gogh"> Vincent Van Gogh</a>
 </div>
 <div class = "bio">Vincent Willem van Gogh (Dutch: [ˈvɪnsɛnt ˈʋɪləm vɑŋ ˈɣɔx] (listen); 30 March 1853 – 29 July 1890) was a Dutch Post-Impressionist painter who is among the most famous and influential figures in the history of Western art. In just over a decade he created about 2,100 artworks, including around 860 oil paintings, most of them in the last two years of his life. They include landscapes, still lifes, portraits and self-portraits, and are characterised by bold colours and dramatic, impulsive and expressive brushwork that contributed to the foundations of modern art. However, he was not commercially successful, and his suicide at 37 followed years of mental illness and poverty.</div>
 </div>
@@ -353,13 +379,4 @@ Use advanced array methods (.map, .reduce, .filer) to refactor your MVP code (cr
 function foo() {
   console.log('its working');
   return 'bar';
-}
-/*Don't touch the code after this line! */
-export default {
-  foo,
-  getArtistByIndex,
-  get20s,
-  removeArtist,
-  addArtist,
-  lotsOfArt
 }
